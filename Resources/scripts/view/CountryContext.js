@@ -1,14 +1,14 @@
-Ext.provide('Makeweb.countrycontext.view.CountryContextAccordion');
+Ext.provide('Phlexible.countrycontext.view.CountryContextAccordion');
 
-Makeweb.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.EditorGridPanel, {
-    strings: Makeweb.strings.Countrycontext,
-    title: Makeweb.strings.Countrycontext.country_context,
+Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.EditorGridPanel, {
+    strings: Phlexible.strings.Countrycontext,
+    title: Phlexible.strings.Countrycontext.country_context,
     iconCls: 'm-flags-de-icon',
     border: false,
     autoHeight: true,
     autoExpandColumn: 1,
     viewConfig: {
-        emptyText: Makeweb.strings.Countrycontext.no_country_context
+        emptyText: Phlexible.strings.Countrycontext.no_country_context
     },
     hidden: true,
 
@@ -47,7 +47,7 @@ Makeweb.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Editor
                 }
             }];
 
-        Makeweb.countrycontext.view.CountryContextAccordion.superclass.initComponent.call(this);
+        Phlexible.countrycontext.view.CountryContextAccordion.superclass.initComponent.call(this);
     },
 
     load: function(data) {
@@ -76,4 +76,4 @@ Makeweb.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Editor
     }
 });
 
-Ext.reg('country-context-accordion', Makeweb.countrycontext.view.CountryContextAccordion);
+Ext.reg('country-context-accordion', Phlexible.countrycontext.view.CountryContextAccordion);

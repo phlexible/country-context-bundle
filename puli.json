@@ -1,0 +1,13 @@
+{
+    "version": "1.0",
+    "name": "phlexible/country-context-bundle",
+    "path-mappings": {
+        "/phlexible/phlexiblecountrycontext/scripts": "Resources/scripts"
+    },
+    "bindings": {
+        "b7807f0e-d2ed-5d27-ac1c-169795f687e4": {
+            "query": "/phlexible/phlexiblecountrycontext/scripts/**/*.js",
+            "type": "phlexible/scripts"
+        }
+    }
+}
