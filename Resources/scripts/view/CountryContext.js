@@ -49,16 +49,31 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
         ];
 
         this.tbar = [
-            this.strings.mode,
+            this.strings.mode + ':',
         {
             xtype: 'combo',
+            hiddenName: 'mode',
             value: 'positive',
+            width: 120,
             store: new Ext.data.SimpleStore({
                 fields: ['mode', 'name'],
                 data: [['positive', this.strings.positive], ['negative', this.strings.negative]]
             }),
             displayField: 'name',
-            valueField: 'type'
+            valueField: 'mode',
+            editable: false,
+            triggerAction: 'all',
+            mode: 'local'
+        },'->',{
+            xtype: 'button',
+            tooltip: this.strings.invert,
+            iconCls: 'p-element-routing-icon',
+            handler: function() {
+                this.getStore().each(function(r) {
+                    r.set('state', !r.get('state'));
+                });
+            },
+            scope: this
         }];
 
         Phlexible.countrycontext.view.CountryContextAccordion.superclass.initComponent.call(this);
@@ -70,11 +85,11 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
             return;
         }
 
-        this.getTopToolbar().items.items[1].setValue(data.mode);
+        this.getTopToolbar().items.items[1].setValue(data.context.mode);
 
         this.store.removeAll();
         if (data.context.countries && data.context.countries.length) {
-            this.store.loadData(data.context);
+            this.store.loadData(data.context.countries);
         }
 
         this.show();
@@ -82,13 +97,16 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
 
     getData: function() {
         var records = this.store.getRange(),
-            data = {};
+            context = {
+                mode: this.getTopToolbar().items.items[1].getValue(),
+                countries: {}
+            };
 
         for(var i=0; i<records.length; i++) {
-            data[records[i].get('id')] = records[i].get('state');
+            context.countries[records[i].get('id')] = records[i].get('state');
         }
 
-        return data;
+        return context;
     }
 });
 

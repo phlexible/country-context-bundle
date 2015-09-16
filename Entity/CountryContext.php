@@ -36,6 +36,12 @@ class CountryContext
 
     /**
      * @var string
+     * @ORM\Column(name="mode", type="string")
+     */
+    private $mode;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", length=2, nullable=false, options={"fixed": true})
      */
     private $country;
@@ -136,6 +142,26 @@ class CountryContext
     public function setState($state)
     {
         $this->state = (bool) $state;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * @param string $mode
+     *
+     * @return $this
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
 
         return $this;
     }

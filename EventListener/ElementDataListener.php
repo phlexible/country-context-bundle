@@ -55,6 +55,9 @@ class ElementDataListener implements EventSubscriberInterface
         );
     }
 
+    /**
+     * @param LoadDataEvent $event
+     */
     public function onLoadElement(LoadDataEvent $event)
     {
         $node = $event->getNode();
@@ -70,21 +73,31 @@ class ElementDataListener implements EventSubscriberInterface
             $countryContexts[$countryContext->getCountry()] = $countryContext;
         }
 
+        $mode = 'positive';
         $contexts = array();
-        foreach ($countries->all() as $mapping) {
-            $contexts[] = array(
-                'id'      => $mapping->getIdentifier(),
-                'country' => $mapping->getCountry(),
-                'state'   => isset($countryContexts[$mapping->getCountry()]) ? $countryContext->getState() : false,
+        foreach ($countries->all() as $country) {
+            $context = array(
+                'id'      => $country->getIdentifier(),
+                'country' => $country->getCountry(),
+                'state'   => false,
             );
+            if (isset($countryContexts[$country->getCountry()])) {
+                $countryContext = $countryContexts[$country->getCountry()];
+                $context['state'] = $countryContext->getState();
+                $mode = $countryContext->getMode();
+            }
+            $contexts[] = $context;
         }
 
         $data->context = array(
-            'mode' => 'positive',
+            'mode' => $mode,
             'countries' => $contexts
         );
     }
 
+    /**
+     * @param SaveNodeDataEvent $event
+     */
     public function onSaveNodeData(SaveNodeDataEvent $event)
     {
         $request = $event->getRequest();
@@ -95,20 +108,24 @@ class ElementDataListener implements EventSubscriberInterface
             return;
         }
 
-        $countries = json_decode($request->get('context'), true);
+        $context = json_decode($request->get('context'), true);
+        $mode = $context['mode'];
+        $countries = $context['countries'];
 
         $countryContextRepository = $this->entityManager->getRepository('PhlexibleCountryContextBundle:CountryContext');
 
         foreach ($countries as $country => $state) {
-            $countryContext = $countryContextRepository->findBy(array(
+            $countryContext = $countryContextRepository->findOneBy(array(
                 'nodeId' => $node->getId(),
                 'country' => $country,
                 'language' => $language,
             ));
 
-            if ($countryContext && (!$state || $state === 'undeceided')) {
-                $this->entityManager->remove($countryContext);
-                $this->entityManager->flush($countryContext);
+            if (!$state) {
+                if ($countryContext) {
+                    $this->entityManager->remove($countryContext);
+                    $this->entityManager->flush($countryContext);
+                }
                 continue;
             }
 
@@ -121,7 +138,9 @@ class ElementDataListener implements EventSubscriberInterface
                 ;
                 $this->entityManager->persist($countryContext);
             }
-            $countryContext->setState($state);
+            $countryContext
+                ->setMode($mode)
+                ->setState(true);
 
             $this->entityManager->flush($countryContext);
         }

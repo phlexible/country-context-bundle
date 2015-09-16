@@ -5,6 +5,20 @@ services:
         arguments:
             - %phlexible_country_context.countries%
 
+
+    phlexible_country_context.router.handler.country_aware:
+        class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareHandler
+        arguments:
+            - @logger
+            - @phlexible_tree.content_tree_manager
+            - @phlexible_siteroot.siteroot_request_matcher
+            - @phlexible_siteroot.siteroot_hostname_generator
+            - %phlexible_cms.languages.available%
+            - %phlexible_cms.languages.default%
+        tags:
+            - {name: monolog.logger, channel: router}
+
+    # events listeners
     phlexible_country_context.element_data_listener:
         class: Phlexible\Bundle\CountryContextBundle\EventListener\ElementDataListener
         arguments:

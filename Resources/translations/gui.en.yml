@@ -6,3 +6,4 @@ countrycontext:
     mode: Mode
     positive: Positive
     negative: Negative
+    invert: Invert

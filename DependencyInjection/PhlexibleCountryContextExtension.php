@@ -32,5 +32,7 @@ class PhlexibleCountryContextExtension extends Extension
         $config = $this->processConfiguration($configuration, $config);
 
         $container->setParameter('phlexible_country_context.countries', $config['countries']);
+
+        $container->setAlias('phlexible_tree.router.handler', 'phlexible_country_context.router.handler.country_aware');
     }
 }
