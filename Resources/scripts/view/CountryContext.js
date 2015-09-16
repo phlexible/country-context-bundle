@@ -27,19 +27,6 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
             singleSelect: true
         });
 
-        /*
-        var checkColumn = new Ext.grid.CheckColumn({
-            header: this.strings.active,
-            dataIndex: 'state,
-            width: 50,
-            xrenderer: function(v) {
-                var iconCls = v ? 'tick' : 'cross';
-
-                return '<img src="' + Ext.BLANK_IMAGE_URL + '" width="16" height="16" class="m-elements-' + iconCls + '-icon" />';
-            }
-        });
-        */
-
         var checkColumn = new Ext.grid.CheckColumn({
             header: this.strings.state,
             dataIndex: 'state',
@@ -61,33 +48,18 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
             }
         ];
 
-        this.tbar = [{
+        this.tbar = [
+            this.strings.mode,
+        {
             xtype: 'combo',
             value: 'positive',
             store: new Ext.data.SimpleStore({
-                fields: ['type'],
-                data: [['positive'], ['negative']]
+                fields: ['mode', 'name'],
+                data: [['positive', this.strings.positive], ['negative', this.strings.negative]]
             }),
-            displayField: 'type',
+            displayField: 'name',
             valueField: 'type'
         }];
-
-        this.on({
-            rowdblclick: function(grid, rowIndex) {
-                var record = grid.getStore().getAt(rowIndex);
-                if (!record) {
-                    return;
-                }
-                if (record.get('state') === 'available') {
-                    record.set('state', 'not_available');
-                } else if (record.get('state') === 'not_available') {
-                    record.set('state', 'undeceided');
-                } else if (record.get('state') === 'undeceided') {
-                    record.set('state', 'available');
-                }
-            },
-            scope: this
-        });
 
         Phlexible.countrycontext.view.CountryContextAccordion.superclass.initComponent.call(this);
     },
@@ -98,7 +70,7 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
             return;
         }
 
-        this.getTopToolbar().items.items[0].setValue(data.mode);
+        this.getTopToolbar().items.items[1].setValue(data.mode);
 
         this.store.removeAll();
         if (data.context.countries && data.context.countries.length) {

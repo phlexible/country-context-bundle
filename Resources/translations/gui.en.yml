@@ -1,5 +1,8 @@
 countrycontext:
     country_context: 'Country context'
     no_country_context: 'No country contexts'
-    active: Active
+    state: State
     country: Country
+    mode: Mode
+    positive: Positive
+    negative: Negative
