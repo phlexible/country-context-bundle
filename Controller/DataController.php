@@ -33,6 +33,8 @@ class DataController extends Controller
      */
     public function getAction(Request $request)
     {
+        $mappings = $this->get('phlexible_country_context.country_collection');
+
         $countryContextRepository = $this->getDoctrine()->getRepository('PhlexibleCountryContextBundle:CountryContext');
 
         $data = array();

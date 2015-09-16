@@ -1,0 +1,5 @@
+countrycontext:
+    country_context: Länderkontext
+    no_country_context: 'Keine Länderkontexte'
+    active: Aktiv
+    country: Land

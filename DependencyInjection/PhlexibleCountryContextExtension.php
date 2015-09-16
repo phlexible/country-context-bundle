@@ -31,6 +31,6 @@ class PhlexibleCountryContextExtension extends Extension
         $configuration = $this->getConfiguration($config, $container);
         $config = $this->processConfiguration($configuration, $config);
 
-        $container->setParameter('phlexible_country_context.mappings', $config['mappings']);
+        $container->setParameter('phlexible_country_context.countries', $config['countries']);
     }
 }

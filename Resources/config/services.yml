@@ -1,1 +1,14 @@
 services:
+    phlexible_country_context.country_collection:
+        class: Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection
+        factory: [Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollectionFactory, createCollection]
+        arguments:
+            - %phlexible_country_context.countries%
+
+    phlexible_country_context.element_data_listener:
+        class: Phlexible\Bundle\CountryContextBundle\EventListener\ElementDataListener
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @phlexible_country_context.country_collection
+        tags:
+            - {name: kernel.event_subscriber}

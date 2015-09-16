@@ -28,14 +28,21 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('mappings')
-                        ->prototype('array')
-                            ->children()
-                                ->scalarNode('language')->end()
-                                ->scalarNode('country')->end()
-                                ->booleanNode('expose')->end()
+                ->arrayNode('countries')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('continent')->end()
+                            ->scalarNode('country')->end()
+                            ->arrayNode('languages')
+                                ->prototype('array')
+                                    ->children()
+                                        ->scalarNode('locale')->end()
+                                        ->booleanNode('expose')->defaultFalse()->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+                    ->end()
                 ->end()
             ->end();
 
