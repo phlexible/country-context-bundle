@@ -11,7 +11,6 @@ namespace Phlexible\Bundle\CountryContextBundle\EventListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
-use Phlexible\Bundle\CountryContextBundle\Mapping\MappingCollection;
 use Phlexible\Bundle\ElementBundle\ElementEvents;
 use Phlexible\Bundle\ElementBundle\Event\LoadDataEvent;
 use Phlexible\Bundle\ElementBundle\Event\SaveNodeDataEvent;
@@ -21,11 +20,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Element data listener
+ * Country context listener
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
-class ElementDataListener implements EventSubscriberInterface
+class CountryContextListener implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
@@ -59,10 +58,12 @@ class ElementDataListener implements EventSubscriberInterface
         );
     }
 
+    /**
+     * @param ConfigureEvent $event
+     */
     public function onConfigureTreeNode(ConfigureEvent $event)
     {
         $configuration = $event->getConfiguration();
-        $node = $configuration->getVariable('treeNode');
         $request = $configuration->get('request');
 
         $language = $request->getLocale();

@@ -20,7 +20,7 @@ services:
 
     # events listeners
     phlexible_country_context.element_data_listener:
-        class: Phlexible\Bundle\CountryContextBundle\EventListener\ElementDataListener
+        class: Phlexible\Bundle\CountryContextBundle\EventListener\CountryContextListener
         arguments:
             - @doctrine.orm.entity_manager
             - @phlexible_country_context.country_collection
