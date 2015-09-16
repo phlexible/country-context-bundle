@@ -15,7 +15,10 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\MappingCollection;
 use Phlexible\Bundle\ElementBundle\ElementEvents;
 use Phlexible\Bundle\ElementBundle\Event\LoadDataEvent;
 use Phlexible\Bundle\ElementBundle\Event\SaveNodeDataEvent;
+use Phlexible\Bundle\ElementRendererBundle\ElementRendererEvents;
+use Phlexible\Bundle\ElementRendererBundle\Event\ConfigureEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Element data listener
@@ -51,8 +54,33 @@ class ElementDataListener implements EventSubscriberInterface
     {
         return array(
             ElementEvents::LOAD_DATA => 'onLoadElement',
-            ElementEvents::SAVE_NODE_DATA => 'onSaveNodeData'
+            ElementEvents::SAVE_NODE_DATA => 'onSaveNodeData',
+            ElementRendererEvents::CONFIGURE_TREE_NODE => 'onConfigureTreeNode',
         );
+    }
+
+    public function onConfigureTreeNode(ConfigureEvent $event)
+    {
+        $configuration = $event->getConfiguration();
+        $node = $configuration->getVariable('treeNode');
+        $request = $configuration->get('request');
+
+        $language = $request->getLocale();
+        $country = $request->attributes->get('_country');
+
+        if (!$country) {
+            return;
+        }
+
+        if (!$this->countries->contains($country)) {
+            throw new NotFoundHttpException("Country $country not valid.");
+        }
+
+        $country = $this->countries->get($country);
+
+        if (!$country->getLanguages()->contains($language)) {
+            throw new NotFoundHttpException("Language $language not valid.");
+        }
     }
 
     /**
