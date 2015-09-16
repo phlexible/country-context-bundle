@@ -15,11 +15,17 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
 
     initComponent: function() {
         this.store = new Ext.data.JsonStore({
-            fields: ['id', 'country', 'state'],
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'country', type: 'string'},
+                {name: 'state', type: 'bool'}
+            ],
             id: 'id'
         });
 
-        this.sm = new Ext.grid.RowSelectionModel();
+        this.sm = new Ext.grid.RowSelectionModel({
+            singleSelect: true
+        });
 
         /*
         var checkColumn = new Ext.grid.CheckColumn({
@@ -34,34 +40,37 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
         });
         */
 
+        var checkColumn = new Ext.grid.CheckColumn({
+            header: this.strings.state,
+            dataIndex: 'state',
+            width: 50
+        });
+
+        this.plugins = [checkColumn];
+
         this.columns = [
+            checkColumn,
             {
                 header: this.strings.country,
                 dataIndex: 'country',
                 renderer: function(v, md, r) {
-                    var icon = Phlexible.inlineIcon('p-gui-' + r.data.id + '-icon');
+                    var icon = Phlexible.inlineIcon('p-gui-' + r.get('country') + '-icon');
 
                     return icon + ' ' + v;
                 }
-            },
-            {
-                header: this.strings.state,
-                dataIndex: 'state',
-                renderer: function(v) {
-                    if (!v || v === 'undeceided') {
-                        return Phlexible.inlineIcon('p-countrycontext-help-icon') + ' undeceided';
-                    }
-                    else if (v === 'available') {
-                        return Phlexible.inlineIcon('p-countrycontext-tick-icon') + ' available';
-                    }
-                    else if (v === 'not_available') {
-                        return Phlexible.inlineIcon('p-countrycontext-cross-icon') + ' not_available';
-                    }
-
-                    return v;
-                }
             }
         ];
+
+        this.tbar = [{
+            xtype: 'combo',
+            value: 'positive',
+            store: new Ext.data.SimpleStore({
+                fields: ['type'],
+                data: [['positive'], ['negative']]
+            }),
+            displayField: 'type',
+            valueField: 'type'
+        }];
 
         this.on({
             rowdblclick: function(grid, rowIndex) {
@@ -84,13 +93,17 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
     },
 
     load: function(data) {
-        if (!Ext.isArray(data.context) || !data.context.length) {
+        if (data.context === undefined) {
             this.hide();
             return;
         }
 
+        this.getTopToolbar().items.items[0].setValue(data.mode);
+
         this.store.removeAll();
-        this.store.loadData(data.context);
+        if (data.context.countries && data.context.countries.length) {
+            this.store.loadData(data.context);
+        }
 
         this.show();
     },
@@ -100,7 +113,7 @@ Phlexible.countrycontext.view.CountryContextAccordion = Ext.extend(Ext.grid.Edit
             data = {};
 
         for(var i=0; i<records.length; i++) {
-            data[records[i].data.id] = records[i].data.state;
+            data[records[i].get('id')] = records[i].get('state');
         }
 
         return data;

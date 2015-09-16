@@ -47,10 +47,10 @@ class CountryContext
     private $language;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", nullable=false)
+     * @var bool
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    private $state;
+    private $state = false;
 
     /**
      * @return int
@@ -121,7 +121,7 @@ class CountryContext
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getState()
     {
@@ -129,13 +129,13 @@ class CountryContext
     }
 
     /**
-     * @param string $state
+     * @param bool $state
      *
      * @return $this
      */
     public function setState($state)
     {
-        $this->state = $state;
+        $this->state = (bool) $state;
 
         return $this;
     }

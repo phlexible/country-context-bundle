@@ -75,11 +75,14 @@ class ElementDataListener implements EventSubscriberInterface
             $contexts[] = array(
                 'id'      => $mapping->getIdentifier(),
                 'country' => $mapping->getCountry(),
-                'state'   => isset($countryContexts[$mapping->getCountry()]) ? $countryContext->getState() : '',
+                'state'   => isset($countryContexts[$mapping->getCountry()]) ? $countryContext->getState() : false,
             );
         }
 
-        $data->context = $contexts;
+        $data->context = array(
+            'mode' => 'positive',
+            'countries' => $contexts
+        );
     }
 
     public function onSaveNodeData(SaveNodeDataEvent $event)
@@ -103,7 +106,7 @@ class ElementDataListener implements EventSubscriberInterface
                 'language' => $language,
             ));
 
-            if ($countryContext && (!$state)) {
+            if ($countryContext && (!$state || $state === 'undeceided')) {
                 $this->entityManager->remove($countryContext);
                 $this->entityManager->flush($countryContext);
                 continue;
