@@ -8,8 +8,11 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Mediator;
 
+use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
+use Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface;
 use Phlexible\Bundle\TreeBundle\Mediator\ViewableVoter;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Country aware viewable voter
@@ -18,15 +21,38 @@ use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
  */
 class CountryAwareViewableVoter extends ViewableVoter
 {
-    public function __construct()
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    /**
+     * @var NodeCheckerInterface
+     */
+    private $nodeChecker;
+
+    /**
+     * @param RequestStack         $requestStack
+     * @param NodeCheckerInterface $nodeChecker
+     */
+    public function __construct(RequestStack $requestStack, NodeCheckerInterface $nodeChecker)
     {
+        $this->requestStack = $requestStack;
+        $this->nodeChecker = $nodeChecker;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isViewable(TreeNodeInterface $node)
+    public function isViewable(TreeNodeInterface $node, $language)
     {
-        return parent::isViewable($node);
+        $request = $this->requestStack->getCurrentRequest();
+        $country = $request->attributes->get('_country');
+
+        if (!$this->nodeChecker->isAllowed($node, $country, $language)) {
+            return false;
+        }
+
+        return parent::isViewable($node, $language);
     }
 }

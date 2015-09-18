@@ -20,7 +20,7 @@ class CountryCollectionFactory
      *
      * @return CountryCollection
      */
-    public function createCollection(array $data)
+    public static function createCollection(array $data)
     {
         $countries = array();
         foreach ($data as $countryIdentifier => $countryItem) {

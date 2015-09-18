@@ -5,7 +5,6 @@ services:
         arguments:
             - %phlexible_country_context.countries%
 
-
     phlexible_country_context.router.handler.country_aware:
         class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareHandler
         arguments:
@@ -18,14 +17,22 @@ services:
         tags:
             - {name: monolog.logger, channel: router}
 
+    phlexible_country_context.node_checker:
+        class: Phlexible\Bundle\CountryContextBundle\Node\NodeChecker
+        arguments:
+            - @phlexible_country_context.country_context_manager
+
     phlexible_country_context.mediator.element.viewable_voter.country_aware:
         class: Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter
+        arguments:
+            - @request_stack
+            - @phlexible_country_context.node_checker
 
     # events listeners
     phlexible_country_context.country_countext_listener:
         class: Phlexible\Bundle\CountryContextBundle\EventListener\CountryContextListener
         arguments:
-            - @doctrine.orm.entity_manager
+            - @phlexible_country_context.doctrine.country_context_manager
             - @phlexible_country_context.country_collection
         tags:
             - {name: kernel.event_subscriber}

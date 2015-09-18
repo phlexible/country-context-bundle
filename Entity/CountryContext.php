@@ -20,6 +20,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CountryContext
 {
+    const MODE_POSITIVE = 'positive';
+    const MODE_NEGATIVE = 'negative';
+
     /**
      * @var int
      * @ORM\Id
@@ -42,9 +45,9 @@ class CountryContext
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=2, nullable=false, options={"fixed": true})
+     * @ORM\Column(type="simple_array")
      */
-    private $country;
+    private $countries = array();
 
     /**
      * @var string
@@ -53,10 +56,16 @@ class CountryContext
     private $language;
 
     /**
-     * @var bool
-     * @ORM\Column(type="boolean", nullable=false)
+     * @param int    $nodeId
+     * @param string $language
+     * @param string $mode
      */
-    private $state = false;
+    public function __construct($nodeId, $language, $mode = self::MODE_POSITIVE)
+    {
+        $this->nodeId = $nodeId;
+        $this->language = $language;
+        $this->mode = $mode;
+    }
 
     /**
      * @return int
@@ -75,23 +84,23 @@ class CountryContext
     }
 
     /**
-     * @param int $nodeId
-     *
-     * @return $this
+     * @return array
      */
-    public function setNodeId($nodeId)
+    public function getCountries()
     {
-        $this->nodeId = $nodeId;
-
-        return $this;
+        return $this->countries;
     }
 
     /**
-     * @return string
+     * @param array $countries
+     *
+     * @return $this
      */
-    public function getCountry()
+    public function setCountries(array $countries)
     {
-        return $this->country;
+        $this->countries = $countries;
+
+        return $this;
     }
 
     /**
@@ -99,9 +108,25 @@ class CountryContext
      *
      * @return $this
      */
-    public function setCountry($country)
+    public function addCountry($country)
     {
-        $this->country = $country;
+        if (!in_array($country, $this->countries)) {
+            $this->countries[] = $country;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $country
+     *
+     * @return $this
+     */
+    public function removeCountry($country)
+    {
+        if (in_array($country, $this->countries)) {
+            unset($this->countries[array_search($country, $this->countries)]);
+        }
 
         return $this;
     }
@@ -112,38 +137,6 @@ class CountryContext
     public function getLanguage()
     {
         return $this->language;
-    }
-
-    /**
-     * @param string $language
-     *
-     * @return $this
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param bool $state
-     *
-     * @return $this
-     */
-    public function setState($state)
-    {
-        $this->state = (bool) $state;
-
-        return $this;
     }
 
     /**

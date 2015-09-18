@@ -27,11 +27,14 @@ class PhlexibleCountryContextExtension extends Extension
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('doctrine.yml');
 
         $configuration = $this->getConfiguration($config, $container);
         $config = $this->processConfiguration($configuration, $config);
 
         $container->setParameter('phlexible_country_context.countries', $config['countries']);
+
+        $container->setAlias('phlexible_country_context.country_context_manager', 'phlexible_country_context.doctrine.country_context_manager');
 
         $container->setAlias('phlexible_tree.router.handler', 'phlexible_country_context.router.handler.country_aware');
         $container->setAlias('phlexible_tree.mediator.element.viewable_voter', 'phlexible_country_context.mediator.element.viewable_voter.country_aware');

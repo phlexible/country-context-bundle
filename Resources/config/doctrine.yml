@@ -1,0 +1,5 @@
+services:
+    phlexible_country_context.doctrine.country_context_manager:
+        class: Phlexible\Bundle\CountryContextBundle\Doctrine\CountryContextManager
+        arguments:
+            - @doctrine.orm.entity_manager

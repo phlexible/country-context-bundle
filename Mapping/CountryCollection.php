@@ -41,7 +41,7 @@ class CountryCollection implements \Countable
     /**
      * @param string $identifier
      *
-     * @return self
+     * @return Country|null
      */
     public function get($identifier)
     {
