@@ -8,9 +8,6 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Tests\Mapping;
 
-use Phlexible\Bundle\CountryContextBundle\Mapping\Country;
-use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
-use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollectionFactory;
 use Phlexible\Bundle\CountryContextBundle\Mapping\Language;
 use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
 

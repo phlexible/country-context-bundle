@@ -11,6 +11,7 @@ namespace Phlexible\Bundle\CountryContextBundle\Router\Handler;
 use Phlexible\Bundle\SiterootBundle\Siteroot\SiterootHostnameGenerator;
 use Phlexible\Bundle\SiterootBundle\Siteroot\SiterootRequestMatcher;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeManagerInterface;
+use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 use Phlexible\Bundle\TreeBundle\Router\Handler\DefaultHandler;
 use Phlexible\Bundle\SiterootBundle\Entity\Url;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeInterface;
@@ -44,12 +45,7 @@ class CountryAwareHandler extends DefaultHandler
     }
 
     /**
-     * Match identifieres (tid, language, ...)
-     *
-     * @param Request              $request
-     * @param ContentTreeInterface $tree
-     *
-     * @return array
+     * {@inheritdoc}
      */
     protected function matchIdentifiers(Request $request, ContentTreeInterface $tree)
     {
@@ -72,11 +68,12 @@ class CountryAwareHandler extends DefaultHandler
             $country = $match[1];
             $language = $match[2];
             $tid = $match[4];
-        } elseif (preg_match('#^/preview/(\w\w)-(\w\w)/(.+)\.(\d+)\.html#', $path, $match)) {
+        } elseif (preg_match('#^/admin/preview/(\w\w)-(\w\w)/(\d+)$#', $path, $match)) {
             // match found
             $country = $match[1];
             $language = $match[2];
-            $tid      = $match[4];
+            $tid      = $match[3];
+            $request->attributes->set('_preview', true);
         }
 
         if ($language === null) {
@@ -110,5 +107,39 @@ class CountryAwareHandler extends DefaultHandler
         $attributes['_controller'] = 'PhlexibleFrontendBundle:Online:index';
 
         return $attributes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function generatePathPrefix($path, TreeNodeInterface $node, $parameters)
+    {
+        return '/' . $parameters['_country'] . '-' . $parameters['_locale'] . $path;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function generateQuery($path, TreeNodeInterface $node, $parameters)
+    {
+        unset($parameters['_country']);
+
+        return parent::generateQuery($path, $node, $parameters);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function generatePreviewPath(TreeNodeInterface $node, array $parameters)
+    {
+        $locale = $parameters['_locale'];
+        unset($parameters['_locale']);
+
+        $country = $parameters['_country'];
+        unset($parameters['_country']);
+
+        unset($parameters['_preview']);
+
+        return "/admin/preview/{$country}-{$locale}/{$node->getId()}" . http_build_query($parameters);
     }
 }

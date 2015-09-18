@@ -34,5 +34,6 @@ class PhlexibleCountryContextExtension extends Extension
         $container->setParameter('phlexible_country_context.countries', $config['countries']);
 
         $container->setAlias('phlexible_tree.router.handler', 'phlexible_country_context.router.handler.country_aware');
+        $container->setAlias('phlexible_tree.mediator.element.viewable_voter', 'phlexible_country_context.mediator.element.viewable_voter.country_aware');
     }
 }
