@@ -65,13 +65,29 @@ class CountryCollection implements \Countable
     /**
      * @param string $language
      *
-     * @return CountryCollection
+     * @return self
      */
     public function filterLanguage($language)
     {
         $countries = array();
         foreach ($this->countries as $country) {
             if ($country->getLanguages()->contains($language)) {
+                $countries[] = $country;
+            }
+        }
+
+        return new self($countries);
+    }
+
+    /**
+     * @return self
+     */
+    public function filterExposed()
+    {
+        $countries = array();
+        foreach ($this->countries as $country) {
+            $languages = $country->getLanguages()->filterExposed();
+            if (count($languages)) {
                 $countries[] = $country;
             }
         }

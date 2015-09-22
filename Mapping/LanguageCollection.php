@@ -63,6 +63,21 @@ class LanguageCollection implements \Countable
     }
 
     /**
+     * @return self
+     */
+    public function filterExposed()
+    {
+        $languages = array();
+        foreach ($this->languages as $language) {
+            if ($language->isExposed()) {
+                $languages[] = $language;
+            }
+        }
+
+        return new self($languages);
+    }
+
+    /**
      * @return int
      */
     public function count()
