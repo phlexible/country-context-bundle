@@ -47,6 +47,7 @@ Now that the bundle is enabled, you need to configure the PhlexibleCountryContex
 Add the following configuration to your config.yaml file.
 
 ``` yaml
+# app/config/config.yaml
 phlexible_country_context:
     countries:
         gb:
