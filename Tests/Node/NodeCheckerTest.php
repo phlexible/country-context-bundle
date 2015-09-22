@@ -1,0 +1,129 @@
+<?php
+/**
+ * phlexible
+ *
+ * @copyright 2007-2013 brainbits GmbH (http://www.brainbits.net)
+ * @license   proprietary
+ */
+
+namespace Phlexible\Bundle\CountryContextBundle\Node;
+
+use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
+use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
+use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
+
+/**
+ * Node checker
+ *
+ * @author Stephan Wentz <sw@brainbits.net>
+ */
+class NodeCheckerTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @var NodeChecker
+     */
+    private $nodeChecker;
+
+    /**
+     * @var CountryContextManagerInterface|ObjectProphecy
+     */
+    private $countryContextManager;
+
+    public function setUp()
+    {
+        $this->countryContextManager = $this->prophesize('Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface');
+
+        $this->nodeChecker = new NodeChecker($this->countryContextManager->reveal());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testNodeIsAllowedOnEmptyCountries()
+    {
+        $countryContext = new CountryContext(123, 'en');
+
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $result = $this->nodeChecker->isAllowed($node, 'de', 'de');
+
+        $this->assertTrue($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testNodeIsAllowedOnMatchingCountry()
+    {
+        $countryContext = new CountryContext(123, 'de');
+        $countryContext->addCountry('de');
+
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $result = $this->nodeChecker->isAllowed($node, 'de', 'de');
+
+        $this->assertTrue($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testNodeIsNotAllowedOnMissingCountry()
+    {
+        $countryContext = new CountryContext(123, 'de');
+        $countryContext->addCountry('us');
+
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $result = $this->nodeChecker->isAllowed($node, 'de', 'de');
+
+        $this->assertFalse($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testNodeIsAllowedOnMatchingNegativeCountry()
+    {
+        $countryContext = new CountryContext(123, 'de', 'negative');
+        $countryContext->addCountry('de');
+
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $result = $this->nodeChecker->isAllowed($node, 'de', 'de');
+
+        $this->assertFalse($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testNodeIsNotAllowedOnMissingNegativeCountry()
+    {
+        $countryContext = new CountryContext(123, 'de', 'negative');
+        $countryContext->addCountry('de');
+
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $result = $this->nodeChecker->isAllowed($node, 'de', 'de');
+
+        $this->assertFalse($result);
+    }
+}

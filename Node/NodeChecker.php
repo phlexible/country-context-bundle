@@ -8,20 +8,9 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Node;
 
+use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
-
-interface NodeCheckerInterface
-{
-    /**
-     * @param TreeNodeInterface $node
-     * @param string            $country
-     * @param string            $language
-     *
-     * @return bool
-     */
-    public function isAllowed(TreeNodeInterface $node, $country, $language);
-}
 
 /**
  * Node checker
@@ -63,11 +52,9 @@ class NodeChecker implements NodeCheckerInterface
 
         $mode = $countryContext->getMode();
 
-        if ($mode === 'positive' && in_array($country, $countryContext->getCountries())) {
+        if ($mode === CountryContext::MODE_POSITIVE && in_array($country, $countryContext->getCountries())) {
             return true;
-        }
-
-        if ($mode === 'negative' && !in_array($country, $countryContext->getCountries())) {
+        } elseif ($mode === CountryContext::MODE_NEGATIVE && !in_array($country, $countryContext->getCountries())) {
             return true;
         }
 

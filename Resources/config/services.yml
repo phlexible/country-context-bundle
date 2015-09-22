@@ -7,6 +7,7 @@ services:
 
     phlexible_country_context.router.handler.country_aware:
         class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareHandler
+        public: false
         arguments:
             - @logger
             - @phlexible_tree.content_tree_manager
@@ -19,11 +20,20 @@ services:
 
     phlexible_country_context.node_checker:
         class: Phlexible\Bundle\CountryContextBundle\Node\NodeChecker
+        public: false
         arguments:
             - @phlexible_country_context.country_context_manager
 
+    phlexible_country_context.node_countries_resolver:
+        class: Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver
+        public: false
+        arguments:
+            - @phlexible_country_context.country_context_manager
+            - @phlexible_country_context.country_collection
+
     phlexible_country_context.mediator.element.viewable_voter.country_aware:
         class: Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter
+        public: false
         arguments:
             - @request_stack
             - @phlexible_country_context.node_checker
@@ -42,5 +52,12 @@ services:
         arguments:
             - @router
             - en
+        tags:
+            - {name: kernel.event_subscriber}
+
+    phlexible_country_context.document_listener:
+        class: Phlexible\Bundle\CountryContextBundle\EventListener\DocumentListener
+        arguments:
+            - @phlexible_country_context.node_countries_resolver
         tags:
             - {name: kernel.event_subscriber}
