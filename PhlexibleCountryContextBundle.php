@@ -11,7 +11,7 @@ namespace Phlexible\Bundle\CountryContextBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * TinyMce bundle
+ * Country context bundle
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

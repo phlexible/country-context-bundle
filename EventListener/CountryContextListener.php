@@ -8,7 +8,6 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
