@@ -52,6 +52,14 @@ class Country
     /**
      * @return string
      */
+    public function __toString()
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @return string
+     */
     public function getIdentifier()
     {
         return $this->identifier;

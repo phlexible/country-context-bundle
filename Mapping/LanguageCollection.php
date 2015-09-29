@@ -7,13 +7,14 @@
  */
 
 namespace Phlexible\Bundle\CountryContextBundle\Mapping;
+use Traversable;
 
 /**
  * Language collection
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
-class LanguageCollection implements \Countable
+class LanguageCollection implements \IteratorAggregate, \Countable
 {
     /**
      * @var Language[]
@@ -83,5 +84,13 @@ class LanguageCollection implements \Countable
     public function count()
     {
         return count($this->languages);
+    }
+
+    /**
+     * @return Traversable
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->languages);
     }
 }

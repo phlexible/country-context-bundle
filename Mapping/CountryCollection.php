@@ -7,13 +7,14 @@
  */
 
 namespace Phlexible\Bundle\CountryContextBundle\Mapping;
+use Traversable;
 
 /**
  * Country collection
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
-class CountryCollection implements \Countable
+class CountryCollection implements \IteratorAggregate, \Countable
 {
     /**
      * @var Country[]
@@ -101,5 +102,13 @@ class CountryCollection implements \Countable
     public function count()
     {
         return count($this->countries);
+    }
+
+    /**
+     * @return Traversable
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->countries);
     }
 }

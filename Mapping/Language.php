@@ -41,6 +41,13 @@ class Language
         $this->locale = $locale;
         $this->exposed = $exposed;
     }
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->identifier;
+    }
 
     /**
      * @return string
