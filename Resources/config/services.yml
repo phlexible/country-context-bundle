@@ -61,3 +61,12 @@ services:
             - @phlexible_country_context.node_countries_resolver
         tags:
             - {name: kernel.event_subscriber}
+
+    # twig extensions
+    phlexible_country_context.twig.country_context_extension:
+        class: Phlexible\Bundle\CountryContextBundle\Twig\Extension\CountryContextExtension
+        arguments:
+            - @request_stack
+            - @phlexible_country_context.country_collection
+        tags:
+            - {name: twig.extension}
