@@ -100,14 +100,20 @@ class CountryContextListener implements EventSubscriberInterface
             'nodeId' => $node->getId(),
             'language' => $language
         ));
-        $mode = $countryContext->getMode();
+
+        $mode = CountryContext::MODE_NEGATIVE;
+        $countryContextCountries = array();
+        if ($countryContext) {
+            $mode = $countryContext->getMode();
+            $countryContextCountries = $countryContext->getCountries();
+        }
 
         $contexts = array();
         foreach ($countries->all() as $country) {
             $contexts[] = array(
                 'id'      => $country->getIdentifier(),
                 'country' => $country->getCountry(),
-                'state'   => in_array($country->getCountry(), $countryContext->getCountries()),
+                'state'   => in_array($country->getCountry(), $countryContextCountries),
             );
         }
 
