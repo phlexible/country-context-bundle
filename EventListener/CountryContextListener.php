@@ -11,6 +11,7 @@ namespace Phlexible\Bundle\CountryContextBundle\EventListener;
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
+use Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface;
 use Phlexible\Bundle\ElementBundle\ElementEvents;
 use Phlexible\Bundle\ElementBundle\Event\LoadDataEvent;
 use Phlexible\Bundle\ElementBundle\Event\SaveNodeDataEvent;
@@ -37,13 +38,23 @@ class CountryContextListener implements EventSubscriberInterface
     private $countries;
 
     /**
+     * @var NodeCheckerInterface
+     */
+    private $nodeChecker;
+
+    /**
      * @param CountryContextManagerInterface $countryContxtManager
      * @param CountryCollection              $countries
+     * @param NodeCheckerInterface           $nodeChecker
      */
-    public function __construct(CountryContextManagerInterface $countryContxtManager, CountryCollection $countries)
-    {
+    public function __construct(
+        CountryContextManagerInterface $countryContxtManager,
+        CountryCollection $countries,
+        NodeCheckerInterface $nodeChecker
+    ) {
         $this->countryContxtManager = $countryContxtManager;
         $this->countries = $countries;
+        $this->nodeChecker = $nodeChecker;
     }
 
     /**
@@ -60,27 +71,34 @@ class CountryContextListener implements EventSubscriberInterface
 
     /**
      * @param ConfigureEvent $event
+     *
+     * @throws NotFoundHttpException
      */
     public function onConfigureTreeNode(ConfigureEvent $event)
     {
         $configuration = $event->getConfiguration();
         $request = $configuration->get('request');
+        $node = $configuration->get('treeNode');
 
         $language = $request->getLocale();
-        $country = $request->attributes->get('_country');
+        $countryCode = $request->attributes->get('_country');
 
-        if (!$country) {
+        if (!$countryCode) {
             return;
         }
 
-        if (!$this->countries->contains($country)) {
-            throw new NotFoundHttpException("Country $country not valid.");
+        if (!$this->countries->contains($countryCode)) {
+            throw new NotFoundHttpException("Country $countryCode not configured.");
         }
 
-        $country = $this->countries->get($country);
+        $country = $this->countries->get($countryCode);
 
         if (!$country->getLanguages()->contains($language)) {
-            throw new NotFoundHttpException("Language $language not valid.");
+            throw new NotFoundHttpException("Language $language not configured for country $country.");
+        }
+
+        if (!$this->nodeChecker->isAllowed($node, $countryCode, $language)) {
+            throw new NotFoundHttpException("Language $language not allowed for country $country.");
         }
     }
 

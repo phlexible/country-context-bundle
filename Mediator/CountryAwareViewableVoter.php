@@ -8,7 +8,6 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Mediator;
 
-use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface;
 use Phlexible\Bundle\TreeBundle\Mediator\ViewableVoter;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;

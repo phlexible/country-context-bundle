@@ -44,6 +44,7 @@ services:
         arguments:
             - @phlexible_country_context.doctrine.country_context_manager
             - @phlexible_country_context.country_collection
+            - @phlexible_country_context.node_checker
         tags:
             - {name: kernel.event_subscriber}
 
