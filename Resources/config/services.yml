@@ -38,6 +38,12 @@ services:
             - @request_stack
             - @phlexible_country_context.node_checker
 
+    phlexible_country_context.node_url_generator.country_and_language:
+        class: Phlexible\Bundle\CountryContextBundle\NodeUrlGenerator\CountryAndLanguageNodeUrlGenerator
+        arguments:
+            - @phlexible_tree.content_tree_manager
+            - @router
+
     # events listeners
     phlexible_country_context.country_countext_listener:
         class: Phlexible\Bundle\CountryContextBundle\EventListener\CountryContextListener
