@@ -140,6 +140,11 @@ class CountryAwareHandler extends DefaultHandler
 
         unset($parameters['_preview']);
 
-        return "/admin/preview/{$country}-{$locale}/{$node->getId()}" . http_build_query($parameters);
+        $query = '';
+        if (count($parameters)) {
+            $query = '?' . http_build_query($parameters);
+        }
+
+        return "/admin/preview/{$country}-{$locale}/{$node->getId()}" . $query;
     }
 }
