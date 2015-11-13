@@ -69,7 +69,11 @@ class CountryListener implements EventSubscriberInterface
     private function setDefaultCountry(Request $request)
     {
         if (!$request->attributes->has('_country')) {
-            $request->attributes->set('_country', $this->defaultCountry);
+            if ($request->query->has('_country')) {
+                $request->attributes->set('_country', $request->query->get('_country'));
+            } else {
+                $request->attributes->set('_country', $this->defaultCountry);
+            }
         }
     }
 
