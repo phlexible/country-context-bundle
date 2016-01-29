@@ -19,7 +19,7 @@ class CountryCollection implements \IteratorAggregate, \Countable
     /**
      * @var Country[]
      */
-    private $countries;
+    private $countries = array();
 
     /**
      * @param Country[] $countries
