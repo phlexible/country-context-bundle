@@ -47,7 +47,7 @@ class CountryAwareHandler extends DefaultHandler
     /**
      * {@inheritdoc}
      */
-    protected function matchIdentifiers(Request $request, ContentTreeInterface $tree)
+    protected function matchIdentifiers(Request $request)
     {
         $match = [];
         $path = $request->getPathInfo();
@@ -55,25 +55,40 @@ class CountryAwareHandler extends DefaultHandler
         $language = null;
         $tid = null;
 
-        /* @var $siterootUrl Url */
-        $siterootUrl = $request->attributes->get('siterootUrl');
-
         $attributes = [];
 
-        if (!strlen($path) || $path === '/') {
-            $language = $siterootUrl->getLanguage();
-            $tid = $siterootUrl->getTarget();
-        } elseif (preg_match('#^/(\w\w)-(\w\w)/(.+)\.(\d+)\.html#', $path, $match)) {
-            // match found
-            $country = $match[1];
-            $language = $match[2];
-            $tid = $match[4];
-        } elseif (preg_match('#^/admin/preview/(\w\w)-(\w\w)/(\d+)$#', $path, $match)) {
+        if (preg_match('#^/admin/preview/(\w\w)-(\w\w)/(\d+)$#', $path, $match)) {
             // match found
             $country = $match[1];
             $language = $match[2];
             $tid      = $match[3];
             $request->attributes->set('_preview', true);
+
+            $tree = $this->contentTreeManager->findByTreeId($tid);
+            $siterootUrl = $tree->getSiteroot()->getDefaultUrl();
+            $request->attributes->set('siterootUrl', $siterootUrl);
+        } else {
+            $siteroot = $this->siterootRequestMatcher->matchRequest($request);
+            if (!$siteroot) {
+                return null;
+            }
+            $siterootUrl = $siteroot->getDefaultUrl();
+            $request->attributes->set('siterootUrl', $siterootUrl);
+
+            $tree = $this->contentTreeManager->find($siteroot->getId());
+
+            /* @var $siterootUrl Url */
+            $siterootUrl = $request->attributes->get('siterootUrl');
+
+            if (!strlen($path) || $path === '/') {
+                $language = $siterootUrl->getLanguage();
+                $tid = $siterootUrl->getTarget();
+            } elseif (preg_match('#^/(\w\w)-(\w\w)/(.+)\.(\d+)\.html#', $path, $match)) {
+                // match found
+                $country = $match[1];
+                $language = $match[2];
+                $tid = $match[4];
+            }
         }
 
         if ($language === null) {
