@@ -12,6 +12,7 @@ use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeInterface;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeManagerInterface;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeNode;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -63,7 +64,11 @@ class CountryAndLanguageNodeUrlGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->treeManager->findByTreeId(123)->willReturn($this->tree->reveal());
         $this->tree->get(123)->willReturn($contentNode);
 
-        $this->router->generate($contentNode, ["_country" => "de", "_preview" => true, "_locale" => "de"], true)->willReturn('testUrl');
+        $this->router->generate(
+            $contentNode,
+            ["_country" => "de", "_preview" => true, "_locale" => "de"],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        )->willReturn('testUrl');
 
         $result = $this->generator->generatePreviewUrl($node, 'de');
 
@@ -80,7 +85,11 @@ class CountryAndLanguageNodeUrlGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->treeManager->findByTreeId(123)->willReturn($this->tree->reveal());
         $this->tree->get(123)->willReturn($contentNode);
 
-        $this->router->generate($contentNode, ["_country" => "de", "_locale" => "de"], true)->willReturn('testUrl');
+        $this->router->generate(
+            $contentNode,
+            ["_country" => "de", "_locale" => "de"],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        )->willReturn('testUrl');
 
         $result = $this->generator->generateOnlineUrl($node, 'de');
 
