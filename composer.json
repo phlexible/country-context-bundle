@@ -2,8 +2,8 @@
     "name": "phlexible/country-context-bundle",
     "description": "phlexible country context bundle",
     "license": "proprietary",
-	"type": "symfony-bundle",
-	"keywords": ["content", "country"],
+    "type": "symfony-bundle",
+    "keywords": ["content", "country"],
     "autoload": {
         "psr-4": {
             "Phlexible\\Bundle\\CountryContextBundle\\": ""
@@ -19,12 +19,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packages.brainbits.net/repo/private/",
-            "options": {
-                "ssl": {
-                    "allow_self_signed": "true"
-                }
-            }
+            "url": "https://packages.brainbits.net/repo/private/"
         }
     ],
     "extra": {
