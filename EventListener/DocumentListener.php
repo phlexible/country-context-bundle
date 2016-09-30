@@ -15,9 +15,6 @@ use Phlexible\Bundle\IndexerBundle\IndexerEvents;
 use Phlexible\Bundle\IndexerElementBundle\Event\MapDocumentEvent;
 use Phlexible\Bundle\IndexerElementBundle\IndexerElementEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Routing\RequestContextAwareInterface;
 
 /**
  * Document listener
