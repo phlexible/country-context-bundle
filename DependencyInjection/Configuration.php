@@ -27,7 +27,9 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('phlexible_country_context');
 
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
+                ->scalarNode('default_country')->defaultValue('en')->end()
                 ->arrayNode('countries')
                     ->prototype('array')
                         ->children()

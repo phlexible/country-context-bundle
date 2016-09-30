@@ -3,18 +3,18 @@ services:
         class: Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection
         factory: [Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollectionFactory, createCollection]
         arguments:
-            - %phlexible_country_context.countries%
+            - "%phlexible_country_context.countries%"
 
     phlexible_country_context.router.handler.country_aware:
         class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareHandler
         public: false
         arguments:
-            - @logger
-            - @phlexible_tree.content_tree_manager
-            - @phlexible_siteroot.siteroot_request_matcher
-            - @phlexible_siteroot.siteroot_hostname_generator
-            - %phlexible_cms.languages.available%
-            - %phlexible_cms.languages.default%
+            - "@logger"
+            - "@phlexible_tree.content_tree_manager"
+            - "@phlexible_siteroot.siteroot_request_matcher"
+            - "@phlexible_siteroot.siteroot_hostname_generator"
+            - "%phlexible_cms.languages.available%"
+            - "%phlexible_cms.languages.default%"
         tags:
             - {name: monolog.logger, channel: router}
 
@@ -22,50 +22,50 @@ services:
         class: Phlexible\Bundle\CountryContextBundle\Node\NodeChecker
         public: false
         arguments:
-            - @phlexible_country_context.country_context_manager
+            - "@phlexible_country_context.country_context_manager"
 
     phlexible_country_context.node_countries_resolver:
         class: Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver
         public: false
         arguments:
-            - @phlexible_country_context.country_context_manager
-            - @phlexible_country_context.country_collection
+            - "@phlexible_country_context.country_context_manager"
+            - "@phlexible_country_context.country_collection"
 
     phlexible_country_context.mediator.element.viewable_voter.country_aware:
         class: Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter
         public: false
         arguments:
-            - @request_stack
-            - @phlexible_country_context.node_checker
+            - "@request_stack"
+            - "@phlexible_country_context.node_checker"
 
     phlexible_country_context.node_url_generator.country_and_language:
         class: Phlexible\Bundle\CountryContextBundle\NodeUrlGenerator\CountryAndLanguageNodeUrlGenerator
         arguments:
-            - @phlexible_tree.content_tree_manager
-            - @router
+            - "@phlexible_tree.content_tree_manager"
+            - "@router"
 
     # events listeners
     phlexible_country_context.country_countext_listener:
         class: Phlexible\Bundle\CountryContextBundle\EventListener\CountryContextListener
         arguments:
-            - @phlexible_country_context.doctrine.country_context_manager
-            - @phlexible_country_context.country_collection
-            - @phlexible_country_context.node_checker
+            - "@phlexible_country_context.doctrine.country_context_manager"
+            - "@phlexible_country_context.country_collection"
+            - "@phlexible_country_context.node_checker"
         tags:
             - {name: kernel.event_subscriber}
 
     phlexible_country_context.country_listener:
         class: Phlexible\Bundle\CountryContextBundle\EventListener\CountryListener
         arguments:
-            - @router
-            - en
+            - "@router"
+            - "%phlexible_country_context.default_country%"
         tags:
             - {name: kernel.event_subscriber}
 
     phlexible_country_context.document_listener:
         class: Phlexible\Bundle\CountryContextBundle\EventListener\DocumentListener
         arguments:
-            - @phlexible_country_context.node_countries_resolver
+            - "@phlexible_country_context.node_countries_resolver"
         tags:
             - {name: kernel.event_subscriber}
 
@@ -73,7 +73,7 @@ services:
     phlexible_country_context.twig.country_context_extension:
         class: Phlexible\Bundle\CountryContextBundle\Twig\Extension\CountryContextExtension
         arguments:
-            - @request_stack
-            - @phlexible_country_context.country_collection
+            - "@request_stack"
+            - "@phlexible_country_context.country_collection"
         tags:
             - {name: twig.extension}
