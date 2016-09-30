@@ -35,10 +35,10 @@ class CountryListener implements EventSubscriberInterface
      * @param RequestContextAwareInterface $router
      * @param string                       $defaultCountry
      */
-    public function __construct(RequestContextAwareInterface $router, $defaultCountry = 'de')
+    public function __construct(RequestContextAwareInterface $router, $defaultCountry)
     {
-        $this->defaultCountry = $defaultCountry;
         $this->router = $router;
+        $this->defaultCountry = $defaultCountry;
     }
 
     /**
