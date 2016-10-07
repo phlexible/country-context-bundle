@@ -55,6 +55,9 @@ phlexible_country_context:
             country: gb
             languages:
                 en: {locale: en, expose: true}
+                
+phlexible_tree:
+    handler_service: "phlexible_country_context.router.handler.country_aware"
 ```
 
 ### Step 4: Update your database schema
