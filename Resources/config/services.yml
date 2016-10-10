@@ -39,7 +39,7 @@ services:
             - "@phlexible_country_context.country_context_manager"
             - "@phlexible_country_context.country_collection"
 
-    phlexible_country_context.mediator.element.viewable_voter.country_aware:
+    phlexible_country_context.element_mediator.country_aware_viewable_voter:
         class: Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter
         public: false
         arguments:

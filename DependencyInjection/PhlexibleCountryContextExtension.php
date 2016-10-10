@@ -37,7 +37,6 @@ class PhlexibleCountryContextExtension extends Extension
 
         $container->setAlias('phlexible_country_context.country_context_manager', 'phlexible_country_context.doctrine.country_context_manager');
 
-        $container->setAlias('phlexible_tree.mediator.element.viewable_voter', 'phlexible_country_context.mediator.element.viewable_voter.country_aware');
         $container->setAlias('phlexible_tree.node_url_generator', 'phlexible_country_context.node_url_generator.country_and_language');
     }
 }
