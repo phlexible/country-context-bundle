@@ -57,6 +57,8 @@ phlexible_country_context:
                 en: {locale: en, expose: true}
                 
 phlexible_tree:
+    mediator:
+        element_viewable_voter: "phlexible_country_context.element_mediator.country_aware_viewable_voter"
     router:
         url_generator_service: "phlexible_country_context.router.country_aware_url_generator"
         request_matcher_service: "phlexible_country_context.router.country_aware_request_matcher"
