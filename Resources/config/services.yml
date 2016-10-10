@@ -5,16 +5,24 @@ services:
         arguments:
             - "%phlexible_country_context.countries%"
 
-    phlexible_country_context.router.handler.country_aware:
-        class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareHandler
+    phlexible_country_context.router.country_aware_request_matcher:
+        class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareRequestMatcher
         public: false
         arguments:
             - "@logger"
             - "@phlexible_tree.content_tree_manager"
             - "@phlexible_siteroot.siteroot_request_matcher"
-            - "@phlexible_siteroot.siteroot_hostname_generator"
             - "%phlexible_cms.languages.available%"
             - "%phlexible_cms.languages.default%"
+        tags:
+            - {name: monolog.logger, channel: router}
+
+    phlexible_country_context.router.country_aware_url_generator:
+        class: Phlexible\Bundle\CountryContextBundle\Router\Handler\CountryAwareUrlGenerator
+        public: false
+        arguments:
+            - "@phlexible_tree.content_tree_manager"
+            - "@phlexible_siteroot.siteroot_hostname_generator"
         tags:
             - {name: monolog.logger, channel: router}
 

@@ -57,7 +57,9 @@ phlexible_country_context:
                 en: {locale: en, expose: true}
                 
 phlexible_tree:
-    handler_service: "phlexible_country_context.router.handler.country_aware"
+    router:
+        url_generator_service: "phlexible_country_context.router.country_aware_url_generator"
+        request_matcher_service: "phlexible_country_context.router.country_aware_request_matcher"
 ```
 
 ### Step 4: Update your database schema
