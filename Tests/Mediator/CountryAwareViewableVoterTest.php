@@ -8,6 +8,7 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Mediator;
 
+use Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -32,8 +33,9 @@ class CountryAwareViewableVoterTest extends \PHPUnit_Framework_TestCase
 
         $node = new TreeNode();
         $node->setType('element-full');
+        $node->setInNavigation(true);
 
-        $nodeChecker = $this->prophesize('Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface');
+        $nodeChecker = $this->prophesize(NodeCheckerInterface::class);
         $nodeChecker->isAllowed($node, 'us', 'en')->willReturn(true);
 
         $voter = new CountryAwareViewableVoter($requestStack, $nodeChecker->reveal());
@@ -57,7 +59,7 @@ class CountryAwareViewableVoterTest extends \PHPUnit_Framework_TestCase
 
         $node = new TreeNode();
 
-        $nodeChecker = $this->prophesize('Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface');
+        $nodeChecker = $this->prophesize(NodeCheckerInterface::class);
         $nodeChecker->isAllowed($node, 'us', 'en')->willReturn(true);
 
         $voter = new CountryAwareViewableVoter($requestStack, $nodeChecker->reveal());
@@ -82,7 +84,7 @@ class CountryAwareViewableVoterTest extends \PHPUnit_Framework_TestCase
         $node = new TreeNode();
         $node->setType('element-full');
 
-        $nodeChecker = $this->prophesize('Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface');
+        $nodeChecker = $this->prophesize(NodeCheckerInterface::class);
         $nodeChecker->isAllowed($node, 'us', 'en')->willReturn(false);
 
         $voter = new CountryAwareViewableVoter($requestStack, $nodeChecker->reveal());

@@ -1,12 +1,10 @@
 PhlexibleCountryContextBundle
 =============================
 
-The PhlexibleCountryContextBundle adds support for country-based content support in phlexible.
+The PhlexibleCountryContextBundle adds support for country-based content in phlexible.
 
 Installation
 ------------
-
-Installation is a 5 step process:
 
 1. Download PhlexibleCountryContextBundle using composer
 2. Enable the Bundle
@@ -57,6 +55,8 @@ phlexible_country_context:
                 en: {locale: en, expose: true}
                 
 phlexible_tree:
+    mediator:
+        element_viewable_voter: "phlexible_country_context.element_mediator.country_aware_viewable_voter"
     router:
         url_generator_service: "phlexible_country_context.router.country_aware_url_generator"
         request_matcher_service: "phlexible_country_context.router.country_aware_request_matcher"
