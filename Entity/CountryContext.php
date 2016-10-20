@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\CountryContextBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Country context
+ * Country context.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  *

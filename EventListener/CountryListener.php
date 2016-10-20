@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RequestContextAwareInterface;
 
 /**
- * Country listener
+ * Country listener.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

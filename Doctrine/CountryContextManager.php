@@ -17,7 +17,7 @@ use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 
 /**
- * Country context manager
+ * Country context manager.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

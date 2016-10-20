@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Twig country context extension test
+ * Twig country context extension test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

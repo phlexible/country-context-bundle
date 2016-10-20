@@ -16,7 +16,7 @@ use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 
 /**
- * Node checker
+ * Node checker.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -41,7 +41,7 @@ class NodeChecker implements NodeCheckerInterface
     public function isAllowed(TreeNodeInterface $node, $country, $language)
     {
         $countryContext = $this->countryContextManager->findOneBy(array(
-            'nodeId'   => $node->getId(),
+            'nodeId' => $node->getId(),
             'language' => $language,
         ));
 

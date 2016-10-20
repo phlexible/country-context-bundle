@@ -12,7 +12,7 @@
 namespace Phlexible\Bundle\CountryContextBundle\Mapping;
 
 /**
- * Language
+ * Language.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -44,6 +44,7 @@ class Language
         $this->locale = $locale;
         $this->exposed = $exposed;
     }
+
     /**
      * @return string
      */

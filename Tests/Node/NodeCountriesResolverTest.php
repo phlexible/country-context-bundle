@@ -22,7 +22,7 @@ use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 
 /**
- * Node countries resolver test
+ * Node countries resolver test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

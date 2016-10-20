@@ -12,7 +12,7 @@
 namespace Phlexible\Bundle\CountryContextBundle\Mapping;
 
 /**
- * Country
+ * Country.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

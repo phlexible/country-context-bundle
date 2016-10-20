@@ -17,7 +17,7 @@ use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 
 /**
- * Node countries resolver
+ * Node countries resolver.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -49,7 +49,7 @@ class NodeCountriesResolver implements NodeCountriesResolverInterface
     public function resolveCountries(TreeNodeInterface $node, $language)
     {
         $countryContext = $this->countryContextManager->findOneBy(array(
-            'nodeId'   => $node->getId(),
+            'nodeId' => $node->getId(),
             'language' => $language,
         ));
 

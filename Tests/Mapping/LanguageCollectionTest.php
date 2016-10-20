@@ -15,7 +15,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\Language;
 use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
 
 /**
- * Language collection test
+ * Language collection test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

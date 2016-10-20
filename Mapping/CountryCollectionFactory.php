@@ -12,7 +12,7 @@
 namespace Phlexible\Bundle\CountryContextBundle\Mapping;
 
 /**
- * Mapping collection factory
+ * Mapping collection factory.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Country aware viewable voter
+ * Country aware viewable voter.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

@@ -16,7 +16,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Twig country context extension
+ * Twig country context extension.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

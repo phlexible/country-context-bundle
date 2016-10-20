@@ -10,10 +10,11 @@
  */
 
 namespace Phlexible\Bundle\CountryContextBundle\Mapping;
+
 use Traversable;
 
 /**
- * Country collection
+ * Country collection.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

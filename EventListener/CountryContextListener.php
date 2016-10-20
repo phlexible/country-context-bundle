@@ -24,7 +24,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Country context listener
+ * Country context listener.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -119,7 +119,7 @@ class CountryContextListener implements EventSubscriberInterface
 
         $countryContext = $this->countryContxtManager->findOneBy(array(
             'nodeId' => $node->getId(),
-            'language' => $language
+            'language' => $language,
         ));
 
         $mode = CountryContext::MODE_NEGATIVE;
@@ -132,15 +132,15 @@ class CountryContextListener implements EventSubscriberInterface
         $contexts = array();
         foreach ($countries->all() as $country) {
             $contexts[] = array(
-                'id'      => $country->getIdentifier(),
+                'id' => $country->getIdentifier(),
                 'country' => $country->getCountry(),
-                'state'   => in_array($country->getCountry(), $countryContextCountries),
+                'state' => in_array($country->getCountry(), $countryContextCountries),
             );
         }
 
         $data->context = array(
             'mode' => $mode,
-            'countries' => $contexts
+            'countries' => $contexts,
         );
     }
 
