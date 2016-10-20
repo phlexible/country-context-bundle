@@ -47,7 +47,7 @@ class CountryContext
     private $mode;
 
     /**
-     * @var string
+     * @var array
      * @ORM\Column(type="simple_array", nullable=true)
      */
     private $countries = array();

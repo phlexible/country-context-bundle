@@ -46,7 +46,7 @@ class LanguageCollection implements \IteratorAggregate, \Countable
     /**
      * @param string $identifier
      *
-     * @return self
+     * @return Language|null
      */
     public function get($identifier)
     {

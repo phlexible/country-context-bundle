@@ -43,7 +43,7 @@ class CountryContextExtension extends \Twig_Extension
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
@@ -83,7 +83,7 @@ class CountryContextExtension extends \Twig_Extension
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {

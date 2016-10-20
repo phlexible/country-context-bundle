@@ -70,7 +70,7 @@ class Language
     }
 
     /**
-     * @return array
+     * @return bool
      */
     public function isExposed()
     {
