@@ -15,7 +15,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 
 /**
- * Node countries resolver interface
+ * Node countries resolver interface.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

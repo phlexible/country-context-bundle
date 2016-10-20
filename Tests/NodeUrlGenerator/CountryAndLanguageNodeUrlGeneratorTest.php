@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Country and language node url generator test
+ * Country and language node url generator test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -69,7 +69,7 @@ class CountryAndLanguageNodeUrlGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->router->generate(
             $contentNode,
-            ["_country" => "de", "_preview" => true, "_locale" => "de"],
+            ['_country' => 'de', '_preview' => true, '_locale' => 'de'],
             UrlGeneratorInterface::ABSOLUTE_URL
         )->willReturn('testUrl');
 
@@ -90,7 +90,7 @@ class CountryAndLanguageNodeUrlGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->router->generate(
             $contentNode,
-            ["_country" => "de", "_locale" => "de"],
+            ['_country' => 'de', '_locale' => 'de'],
             UrlGeneratorInterface::ABSOLUTE_URL
         )->willReturn('testUrl');
 

@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Country and language node url generator
+ * Country and language node url generator.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\CountryContextBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Country context bundle
+ * Country context bundle.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

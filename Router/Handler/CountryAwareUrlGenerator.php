@@ -15,7 +15,7 @@ use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 use Phlexible\Bundle\TreeBundle\Router\Handler\DefaultUrlGenerator;
 
 /**
- * Country aware url generator
+ * Country aware url generator.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -26,7 +26,7 @@ class CountryAwareUrlGenerator extends DefaultUrlGenerator
      */
     protected function generatePathPrefix($path, TreeNodeInterface $node, $parameters)
     {
-        return '/' . $parameters['_country'] . '-' . $parameters['_locale'] . $path;
+        return '/'.$parameters['_country'].'-'.$parameters['_locale'].$path;
     }
 
     /**
@@ -54,9 +54,9 @@ class CountryAwareUrlGenerator extends DefaultUrlGenerator
 
         $query = '';
         if (count($parameters)) {
-            $query = '?' . http_build_query($parameters);
+            $query = '?'.http_build_query($parameters);
         }
 
-        return "/admin/preview/{$country}-{$locale}/{$node->getId()}" . $query;
+        return "/admin/preview/{$country}-{$locale}/{$node->getId()}".$query;
     }
 }

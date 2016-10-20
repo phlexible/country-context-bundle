@@ -18,7 +18,7 @@ use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 
 /**
- * Node checker
+ * Node checker.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

@@ -20,7 +20,7 @@ use Phlexible\Bundle\IndexerElementBundle\IndexerElementEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Document listener
+ * Document listener.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

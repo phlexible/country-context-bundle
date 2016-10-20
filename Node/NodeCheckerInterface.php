@@ -14,7 +14,7 @@ namespace Phlexible\Bundle\CountryContextBundle\Node;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 
 /**
- * Node checker
+ * Node checker.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

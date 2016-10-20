@@ -15,7 +15,7 @@ use Phlexible\Bundle\SiterootBundle\Entity\Url;
 use Phlexible\Bundle\TreeBundle\Router\Handler\DefaultRequestMatcher;
 
 /**
- * Country aware request matcher
+ * Country aware request matcher.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */
@@ -34,7 +34,7 @@ class CountryAwareRequestMatcher extends DefaultRequestMatcher
             '_preview' => true,
             'country' => $match[1],
             'language' => $match[2],
-            'tid' => $match[3]
+            'tid' => $match[3],
         );
     }
 
@@ -46,13 +46,13 @@ class CountryAwareRequestMatcher extends DefaultRequestMatcher
         if (!strlen($path) || $path === '/') {
             return array(
                 'language' => $siterootUrl->getLanguage(),
-                'tid' => $siterootUrl->getTarget()
+                'tid' => $siterootUrl->getTarget(),
             );
         } elseif (preg_match('#^/(\w\w)-(\w\w)/.+\.(\d+)\.html#', $path, $match)) {
             return array(
                 '_country' => $match[1],
                 'language' => $match[2],
-                'tid' => $match[3]
+                'tid' => $match[3],
             );
         }
 
