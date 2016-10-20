@@ -15,8 +15,8 @@ use Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver;
 use Phlexible\Bundle\IndexerBundle\Document\DocumentInterface;
 use Phlexible\Bundle\IndexerBundle\Event\DocumentEvent;
 use Phlexible\Bundle\IndexerBundle\IndexerEvents;
-use Phlexible\Bundle\IndexerElementBundle\Event\MapDocumentEvent;
-use Phlexible\Bundle\IndexerElementBundle\IndexerElementEvents;
+use Phlexible\Bundle\IndexerPageBundle\Event\MapDocumentEvent;
+use Phlexible\Bundle\IndexerPageBundle\IndexerPageEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -46,7 +46,7 @@ class DocumentListener implements EventSubscriberInterface
     {
         return array(
             IndexerEvents::CREATE_DOCUMENT => 'onCreateDocument',
-            IndexerElementEvents::MAP_DOCUMENT => 'onMapDocument',
+            IndexerPageEvents::MAP_DOCUMENT => 'onMapDocument',
         );
     }
 
