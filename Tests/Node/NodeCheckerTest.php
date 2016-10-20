@@ -36,7 +36,7 @@ class NodeCheckerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->countryContextManager = $this->prophesize('Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface');
+        $this->countryContextManager = $this->prophesize(CountryContextManagerInterface::class);
 
         $this->nodeChecker = new NodeChecker($this->countryContextManager->reveal());
     }

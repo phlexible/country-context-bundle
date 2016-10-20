@@ -45,7 +45,7 @@ class NodeCountriesResolverTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->countryContextManager = $this->prophesize('Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface');
+        $this->countryContextManager = $this->prophesize(CountryContextManagerInterface::class);
         $this->countries = new CountryCollection(array(
             new Country('de', 'de', 'eu', new LanguageCollection(array(new Language('de', 'de', true)))),
             new Country('at', 'at', 'eu', new LanguageCollection(array(new Language('de', 'de', true)))),
