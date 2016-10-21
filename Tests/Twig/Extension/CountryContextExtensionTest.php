@@ -25,6 +25,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * Twig country context extension test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Twig\Extension\CountryContextExtension
  */
 class CountryContextExtensionTest extends \PHPUnit_Framework_TestCase
 {

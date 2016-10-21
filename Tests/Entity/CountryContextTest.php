@@ -17,6 +17,8 @@ use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
  * Country context test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Entity\CountryContext
  */
 class CountryContextTest extends \PHPUnit_Framework_TestCase
 {

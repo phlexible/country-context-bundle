@@ -18,6 +18,8 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
  * Language collection test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection
  */
 class LanguageCollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -77,5 +79,51 @@ class LanguageCollectionTest extends \PHPUnit_Framework_TestCase
         $collection = new LanguageCollection($languages);
 
         $this->assertFalse($collection->contains('us'));
+    }
+
+    public function testFilterExposed()
+    {
+        $languages = array(
+            new Language('de', 'de_de', true),
+            new Language('en', 'en_us', false),
+        );
+
+        $collection = new LanguageCollection($languages);
+
+        $this->assertTrue($collection->contains('de'));
+        $this->assertTrue($collection->contains('en'));
+
+        $collection = $collection->filterExposed();
+
+        $this->assertTrue($collection->contains('de'));
+        $this->assertFalse($collection->contains('en'));
+    }
+
+    public function testCount()
+    {
+        $languages = array(
+            new Language('de', 'de_de', true),
+            new Language('en', 'en_us', false),
+        );
+
+        $collection = new LanguageCollection($languages);
+
+        $this->assertCount(2, $collection);
+    }
+
+    public function testIterate()
+    {
+        $languages = array(
+            new Language('de', 'de_de', true),
+            new Language('en', 'en_us', false),
+        );
+
+        $collection = new LanguageCollection($languages);
+
+        foreach ($collection as $language) {
+            $l = array_shift($languages);
+
+            $this->assertSame($l, $language);
+        }
     }
 }

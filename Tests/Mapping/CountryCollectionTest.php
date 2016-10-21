@@ -20,6 +20,8 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
  * Country collection test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection
  */
 class CountryCollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -93,5 +95,34 @@ class CountryCollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(1, $filteredCollection);
         $this->assertSame($countries[0], current($filteredCollection->all()));
+    }
+
+    public function testFilterExposedReturnsExposedCountries()
+    {
+        $countries = array(
+            new Country('de', 'de', 'de', new LanguageCollection(array(new Language('de', 'de_de', true)))),
+            new Country('us', 'us', 'na', new LanguageCollection(array())),
+        );
+
+        $collection = new CountryCollection($countries);
+        $filteredCollection = $collection->filterExposed();
+
+        $this->assertCount(1, $filteredCollection);
+        $this->assertSame($countries[0], current($filteredCollection->all()));
+    }
+
+    public function testIterator()
+    {
+        $countries = array(
+            new Country('de', 'de', 'de', new LanguageCollection(array(new Language('de', 'de_de', true)))),
+            new Country('us', 'us', 'na', new LanguageCollection(array())),
+        );
+
+        $collection = new CountryCollection($countries);
+        foreach ($collection as $country) {
+            $c = array_shift($countries);
+
+            $this->assertSame($c, $country);
+        }
     }
 }

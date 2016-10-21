@@ -169,7 +169,7 @@ class CountryContext
      */
     public function matchCountry($country)
     {
-        return $this->mode === CountryContext::MODE_POSITIVE && in_array($country, $this->countries)
-            || $this->mode === CountryContext::MODE_NEGATIVE && !in_array($country, $this->countries);
+        return $this->mode === self::MODE_POSITIVE && in_array($country, $this->countries)
+            || $this->mode === self::MODE_NEGATIVE && !in_array($country, $this->countries);
     }
 }

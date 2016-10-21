@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Phlexible\Bundle\CountryContextBundle\Node;
+namespace Phlexible\Bundle\CountryContextBundle\Tests\Node;
 
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Mapping\Country;
@@ -17,6 +17,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Mapping\Language;
 use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
+use Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -25,6 +26,8 @@ use Prophecy\Prophecy\ObjectProphecy;
  * Node countries resolver test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver
  */
 class NodeCountriesResolverTest extends \PHPUnit_Framework_TestCase
 {
@@ -95,5 +98,20 @@ class NodeCountriesResolverTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(1, $countries);
         $this->assertTrue($countries->contains('us'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testResolveWithoutCountries()
+    {
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn(null);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $countries = $this->countryResolver->resolveCountries($node, 'en');
+
+        $this->assertSame($countries, $this->countries);
     }
 }

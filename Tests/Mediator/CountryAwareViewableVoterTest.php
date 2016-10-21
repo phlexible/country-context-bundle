@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Phlexible\Bundle\CountryContextBundle\Mediator;
+namespace Phlexible\Bundle\CountryContextBundle\Tests\Mediator;
 
+use Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter;
 use Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * Country aware viewable voter.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter
  */
 class CountryAwareViewableVoterTest extends \PHPUnit_Framework_TestCase
 {

@@ -18,6 +18,8 @@ use Phlexible\Bundle\CountryContextBundle\DependencyInjection\Configuration;
  * Configuration test.
  *
  * @author Stephan Wentz <swentz@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\DependencyInjection\Configuration
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +34,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertProcessedConfigurationEquals(
             array(
-                array()
+                array(),
             ),
             array(
                 'default_country' => 'en',

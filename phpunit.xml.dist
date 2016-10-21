@@ -18,6 +18,7 @@
             <exclude>
                 <directory suffix=".php">Tests</directory>
                 <directory suffix=".php">vendor</directory>
+                <directory suffix=".php">build</directory>
                 <file>sami.php</file>
             </exclude>
         </whitelist>

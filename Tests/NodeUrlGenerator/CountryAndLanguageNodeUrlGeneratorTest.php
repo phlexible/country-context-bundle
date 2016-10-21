@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Phlexible\Bundle\CountryContextBundle\NodeUrlGenerator;
+namespace Phlexible\Bundle\CountryContextBundle\Tests\NodeUrlGenerator;
 
+use Phlexible\Bundle\CountryContextBundle\NodeUrlGenerator\CountryAndLanguageNodeUrlGenerator;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeInterface;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeManagerInterface;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeNode;
@@ -22,6 +23,8 @@ use Symfony\Component\Routing\RouterInterface;
  * Country and language node url generator test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\NodeUrlGenerator\CountryAndLanguageNodeUrlGenerator
  */
 class CountryAndLanguageNodeUrlGeneratorTest extends \PHPUnit_Framework_TestCase
 {

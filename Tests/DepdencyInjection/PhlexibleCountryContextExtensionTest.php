@@ -18,6 +18,8 @@ use Phlexible\Bundle\CountryContextBundle\DependencyInjection\PhlexibleCountryCo
  * Phlexible country context extension test.
  *
  * @author Stephan Wentz <swentz@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\DependencyInjection\PhlexibleCountryContextExtension
  */
 class PhlexibleCountryContextExtensionTest extends AbstractExtensionTestCase
 {

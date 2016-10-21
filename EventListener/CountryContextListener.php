@@ -111,7 +111,6 @@ class CountryContextListener implements EventSubscriberInterface
     public function onLoadElement(LoadDataEvent $event)
     {
         $node = $event->getNode();
-        $teaser = $event->getTeaser();
         $language = $event->getLanguage();
         $data = $event->getData();
 

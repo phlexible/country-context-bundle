@@ -54,9 +54,7 @@ class CountryContextManager implements CountryContextManagerInterface
     }
 
     /**
-     * @param int $id
-     *
-     * @return CountryContext
+     * {@inheritdoc}
      */
     public function find($id)
     {
@@ -64,23 +62,15 @@ class CountryContextManager implements CountryContextManagerInterface
     }
 
     /**
-     * @param array      $criteria
-     * @param array|null $orderBy
-     * @param int|null   $offset
-     * @param int|null   $limit
-     *
-     * @return CountryContext[]
+     * {@inheritdoc}
      */
-    public function findBy(array $criteria = array(), array $orderBy = null, $offset = null, $limit = null)
+    public function findBy(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
     {
         return $this->getCountryContextRepository()->findBy($criteria, $orderBy, $limit, $offset);
     }
 
     /**
-     * @param array      $criteria
-     * @param array|null $orderBy
-     *
-     * @return CountryContext
+     * {@inheritdoc}
      */
     public function findOneBy(array $criteria = array(), array $orderBy = null)
     {
@@ -88,7 +78,7 @@ class CountryContextManager implements CountryContextManagerInterface
     }
 
     /**
-     * @param CountryContext $countryContext
+     * {@inheritdoc}
      */
     public function updateCountryContext(CountryContext $countryContext)
     {
@@ -97,7 +87,7 @@ class CountryContextManager implements CountryContextManagerInterface
     }
 
     /**
-     * @param CountryContext $countryContext
+     * {@inheritdoc}
      */
     public function deleteCountryContext(CountryContext $countryContext)
     {

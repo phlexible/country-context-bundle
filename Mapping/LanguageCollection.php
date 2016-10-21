@@ -23,7 +23,7 @@ class LanguageCollection implements \IteratorAggregate, \Countable
     /**
      * @var Language[]
      */
-    private $languages;
+    private $languages = array();
 
     /**
      * @param Language[] $languages

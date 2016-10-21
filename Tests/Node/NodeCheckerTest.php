@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Phlexible\Bundle\CountryContextBundle\Node;
+namespace Phlexible\Bundle\CountryContextBundle\Tests\Node;
 
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
+use Phlexible\Bundle\CountryContextBundle\Node\NodeChecker;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -21,6 +22,8 @@ use Prophecy\Prophecy\ObjectProphecy;
  * Node checker.
  *
  * @author Stephan Wentz <sw@brainbits.net>
+ *
+ * @covers \Phlexible\Bundle\CountryContextBundle\Node\NodeChecker
  */
 class NodeCheckerTest extends \PHPUnit_Framework_TestCase
 {

@@ -11,7 +11,6 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Node;
 
-use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
