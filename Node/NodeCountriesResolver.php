@@ -57,14 +57,10 @@ class NodeCountriesResolver implements NodeCountriesResolverInterface
             return $this->countries;
         }
 
-        $mode = $countryContext->getMode();
         $countries = array();
 
         foreach ($this->countries->all() as $country) {
-            $contained = in_array($country->getCountry(), $countryContext->getCountries());
-            if ($mode === CountryContext::MODE_POSITIVE && $contained) {
-                $countries[] = $country;
-            } elseif ($mode === CountryContext::MODE_NEGATIVE && !$contained) {
+            if ($countryContext->matchCountry($country->getCountry())) {
                 $countries[] = $country;
             }
         }

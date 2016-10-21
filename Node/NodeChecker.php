@@ -11,7 +11,6 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Node;
 
-use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\TreeBundle\Model\TreeNodeInterface;
 
@@ -28,11 +27,18 @@ class NodeChecker implements NodeCheckerInterface
     private $countryContextManager;
 
     /**
-     * @param CountryContextManagerInterface $countryContextManager
+     * @var bool
      */
-    public function __construct(CountryContextManagerInterface $countryContextManager)
+    private $isAllowedForUndefined;
+
+    /**
+     * @param CountryContextManagerInterface $countryContextManager
+     * @param bool                           $isAllowedForUndefined
+     */
+    public function __construct(CountryContextManagerInterface $countryContextManager, $isAllowedForUndefined = true)
     {
         $this->countryContextManager = $countryContextManager;
+        $this->isAllowedForUndefined = $isAllowedForUndefined;
     }
 
     /**
@@ -45,22 +51,10 @@ class NodeChecker implements NodeCheckerInterface
             'language' => $language,
         ));
 
-        if (!$countryContext) {
-            return true;
+        if (!$countryContext || !$countryContext->getCountries()) {
+            return $this->isAllowedForUndefined;
         }
 
-        if (!$countryContext->getCountries()) {
-            return true;
-        }
-
-        $mode = $countryContext->getMode();
-
-        if ($mode === CountryContext::MODE_POSITIVE && in_array($country, $countryContext->getCountries())) {
-            return true;
-        } elseif ($mode === CountryContext::MODE_NEGATIVE && !in_array($country, $countryContext->getCountries())) {
-            return true;
-        }
-
-        return false;
+        return $countryContext->matchCountry($country);
     }
 }

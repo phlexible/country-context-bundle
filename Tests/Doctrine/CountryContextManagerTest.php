@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Phlexible\Bundle\CountryContextBundle\Doctrine\CountryContextManager;
 
 /**
- * Country context manager.
+ * Country context manager test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  */

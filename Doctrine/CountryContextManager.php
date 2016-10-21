@@ -41,10 +41,13 @@ class CountryContextManager implements CountryContextManagerInterface
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @return EntityRepository
+     */
     private function getCountryContextRepository()
     {
         if ($this->countryContextRepository === null) {
-            $this->countryContextRepository = $this->entityManager->getRepository('PhlexibleCountryContextBundle:CountryContext');
+            $this->countryContextRepository = $this->entityManager->getRepository(CountryContext::class);
         }
 
         return $this->countryContextRepository;

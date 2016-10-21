@@ -15,7 +15,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Phlexible\Bundle\CountryContextBundle\DependencyInjection\PhlexibleCountryContextExtension;
 
 /**
- * Phlexible country context extension test
+ * Phlexible country context extension test.
  *
  * @author Stephan Wentz <swentz@brainbits.net>
  */
@@ -27,7 +27,7 @@ class PhlexibleCountryContextExtensionTest extends AbstractExtensionTestCase
     protected function getContainerExtensions()
     {
         return array(
-            new PhlexibleCountryContextExtension()
+            new PhlexibleCountryContextExtension(),
         );
     }
 
@@ -52,10 +52,10 @@ class PhlexibleCountryContextExtensionTest extends AbstractExtensionTestCase
                         'de' => array(
                             'locale' => 'de',
                             'expose' => true,
-                        )
-                    )
-                )
-            )
+                        ),
+                    ),
+                ),
+            ),
         ));
 
         $this->assertContainerBuilderHasParameter('phlexible_country_context.default_country', 'de');
@@ -67,9 +67,9 @@ class PhlexibleCountryContextExtensionTest extends AbstractExtensionTestCase
                     'de' => array(
                         'locale' => 'de',
                         'expose' => true,
-                    )
-                )
-            )
+                    ),
+                ),
+            ),
         ));
         $this->assertContainerBuilderHasAlias('phlexible_country_context.country_context_manager', 'phlexible_country_context.doctrine.country_context_manager');
     }

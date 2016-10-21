@@ -161,4 +161,15 @@ class CountryContext
 
         return $this;
     }
+
+    /**
+     * @param string $country
+     *
+     * @return bool
+     */
+    public function matchCountry($country)
+    {
+        return $this->mode === CountryContext::MODE_POSITIVE && in_array($country, $this->countries)
+            || $this->mode === CountryContext::MODE_NEGATIVE && !in_array($country, $this->countries);
+    }
 }

@@ -15,7 +15,7 @@ use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Phlexible\Bundle\CountryContextBundle\DependencyInjection\Configuration;
 
 /**
- * Configuration test
+ * Configuration test.
  *
  * @author Stephan Wentz <swentz@brainbits.net>
  */
@@ -55,11 +55,11 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                                 'de' => array(
                                     'locale' => 'de',
                                     'expose' => true,
-                                )
-                            )
-                        )
+                                ),
+                            ),
+                        ),
                     ),
-                )
+                ),
             ),
             array(
                 'default_country' => 'de',
@@ -71,9 +71,9 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                             'de' => array(
                                 'locale' => 'de',
                                 'expose' => true,
-                            )
-                        )
-                    )
+                            ),
+                        ),
+                    ),
                 ),
             )
         );

@@ -63,7 +63,7 @@ class NodeCountriesResolverTest extends \PHPUnit_Framework_TestCase
      */
     public function testResolvePositiveCountries()
     {
-        $countryContext = new CountryContext(123, 'en');
+        $countryContext = new CountryContext(123, 'en', CountryContext::MODE_POSITIVE);
         $countryContext->setCountries(array('de', 'at'));
 
         $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
@@ -83,7 +83,7 @@ class NodeCountriesResolverTest extends \PHPUnit_Framework_TestCase
      */
     public function testResolveNegativeCountries()
     {
-        $countryContext = new CountryContext(123, 'en', 'negative');
+        $countryContext = new CountryContext(123, 'en', CountryContext::MODE_NEGATIVE);
         $countryContext->setCountries(array('de', 'at'));
 
         $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);

@@ -53,9 +53,28 @@ class NodeCheckerTest extends \PHPUnit_Framework_TestCase
         $node = new TreeNode();
         $node->setId(123);
 
-        $result = $this->nodeChecker->isAllowed($node, 'de', 'de');
+        $nodeChecker = new NodeChecker($this->countryContextManager->reveal(), true);
+        $result = $nodeChecker->isAllowed($node, 'de', 'de');
 
         $this->assertTrue($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testNodeIsAllowedOnEmptyCountriesWithDefaultFalse()
+    {
+        $countryContext = new CountryContext(123, 'en');
+
+        $this->countryContextManager->findOneBy(Argument::cetera())->willReturn($countryContext);
+
+        $node = new TreeNode();
+        $node->setId(123);
+
+        $nodeChecker = new NodeChecker($this->countryContextManager->reveal(), false);
+        $result = $nodeChecker->isAllowed($node, 'de', 'de');
+
+        $this->assertFalse($result);
     }
 
     /**
