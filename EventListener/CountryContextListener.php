@@ -81,7 +81,7 @@ class CountryContextListener implements EventSubscriberInterface
         $node = $configuration->get('treeNode');
 
         $language = $request->getLocale();
-        $countryCode = $request->attributes->get('_country');
+        $countryCode = $request->attributes->get('country');
 
         if (!$countryCode) {
             return;
