@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Stephan Wentz <sw@brainbits.net>
  *
  * @ORM\Entity
- * @ORM\Table(name="country_context")
+ * @ORM\Table(name="country_context", indexes={@ORM\Index(columns={"node_id", "language"})})
  */
 class CountryContext
 {
