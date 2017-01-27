@@ -11,6 +11,8 @@
 
 namespace Phlexible\Bundle\CountryContextBundle;
 
+use Phlexible\Bundle\CountryContextBundle\DependencyInjection\Compiler\UrlGeneratorPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -20,4 +22,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class PhlexibleCountryContextBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new UrlGeneratorPass());
+    }
 }

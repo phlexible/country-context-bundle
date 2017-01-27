@@ -39,6 +39,5 @@ class PhlexibleCountryContextExtension extends Extension
         $container->setParameter('phlexible_country_context.default_country', $config['default_country']);
 
         $container->setAlias('phlexible_country_context.country_context_manager', 'phlexible_country_context.doctrine.country_context_manager');
-        $container->setAlias('phlexible_tree.node_url_generator', 'phlexible_country_context.node_url_generator.country_and_language');
     }
 }

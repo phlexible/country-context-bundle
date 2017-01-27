@@ -85,3 +85,13 @@ services:
             - "@phlexible_country_context.country_collection"
         tags:
             - {name: twig.extension}
+
+    # Indexer Parameters Generator
+    phlexible_indexer_element.country_parameters_generator:
+        class: Phlexible\Bundle\CountryContextBundle\Indexer\ParametersGenerator\CountryIndexerParametersGenerator
+        arguments:
+            - "@phlexible_country_context.country_collection"
+        public: false
+        tags:
+            - {name: phlexible_indexer_page.param_generator, priority: 0}
+
