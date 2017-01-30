@@ -68,11 +68,11 @@ class CountryCollection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param callback $fn
+     * @param callable $fn
      *
      * @return Country|null
      */
-    public function findBy(callback $fn)
+    public function findBy(callable $fn)
     {
         foreach ($this->countries as $country) {
             if ($fn($country)) {
