@@ -14,8 +14,8 @@ namespace Phlexible\Bundle\CountryContextBundle\Indexer\ParametersGenerator;
 
 use Phlexible\Bundle\CountryContextBundle\Mapping\Country;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
-use Phlexible\Bundle\IndexerElementBundle\Indexer\DocumentDescriptor;
-use Phlexible\Bundle\IndexerElementBundle\Indexer\ParametersGenerator\IndexerParametersGeneratorInterface;
+use Phlexible\Bundle\IndexerPageBundle\Indexer\DocumentDescriptor;
+use Phlexible\Bundle\IndexerPageBundle\Indexer\ParametersGenerator\IndexerParametersGeneratorInterface;
 
 /**
  * Tries to find a country with the document language exposed.
