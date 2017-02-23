@@ -48,7 +48,6 @@ class CountryContextListenerTest extends \PHPUnit_Framework_TestCase
 
     public function testOnConfigureTreeNode()
     {
-
         $countryContextManager = $this->prophesize(CountryContextManagerInterface::class);
         $countries = new CountryCollection(array());
         $nodeChecker = $this->prophesize(NodeCheckerInterface::class);
@@ -74,7 +73,6 @@ class CountryContextListenerTest extends \PHPUnit_Framework_TestCase
 
         $listener = new CountryContextListener($countryContextManager->reveal(), $countries, $nodeChecker->reveal());
         $listener->onLoadElement($event);
-
     }
 
     public function testOnSaveNodeData()

@@ -11,7 +11,6 @@
 
 namespace Phlexible\Bundle\CountryContextBundle\Indexer\ParametersGenerator;
 
-
 use Phlexible\Bundle\CountryContextBundle\Mapping\Country;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\IndexerPageBundle\Indexer\DocumentDescriptor;
@@ -44,12 +43,12 @@ class CountryIndexerParametersGenerator implements IndexerParametersGeneratorInt
      */
     public function createParameters(DocumentDescriptor $identity)
     {
-        $language   = $identity->getLanguage();
+        $language = $identity->getLanguage();
         $parameters = ['_locale' => $identity->getLanguage()];
 
         $country = $this->countryCollection->findBy(
             function (Country $country) use ($language) {
-                return ($country->getLanguages()->contains($language));
+                return $country->getLanguages()->contains($language);
             }
         );
         if ($country) {
