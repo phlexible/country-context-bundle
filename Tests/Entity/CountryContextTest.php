@@ -12,6 +12,7 @@
 namespace Phlexible\Bundle\CountryContextBundle\Tests\Entity;
 
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Country context test.
@@ -20,7 +21,7 @@ use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Entity\CountryContext
  */
-class CountryContextTest extends \PHPUnit_Framework_TestCase
+class CountryContextTest extends TestCase
 {
     public function testAddCountry()
     {

@@ -26,7 +26,7 @@ use Symfony\Component\Routing\RouterInterface;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\NodeUrlGenerator\CountryAndLanguageNodeUrlGenerator
  */
-class CountryAndLanguageNodeUrlGeneratorTest extends \PHPUnit_Framework_TestCase
+class CountryAndLanguageNodeUrlGeneratorTest extends TestCase
 {
     /**
      * @var ContentTreeManagerInterface

@@ -13,6 +13,7 @@ namespace Phlexible\Bundle\CountryContextBundle\Tests\Mapping;
 
 use Phlexible\Bundle\CountryContextBundle\Mapping\Language;
 use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Language collection test.
@@ -21,7 +22,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection
  */
-class LanguageCollectionTest extends \PHPUnit_Framework_TestCase
+class LanguageCollectionTest extends TestCase
 {
     public function testReturnsAllLanguages()
     {

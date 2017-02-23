@@ -14,17 +14,18 @@ namespace Phlexible\Bundle\CountryContextBundle\Tests\Mediator;
 use Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter;
 use Phlexible\Bundle\CountryContextBundle\Node\NodeCheckerInterface;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Country aware viewable voter.
+ * Country aware viewable voter test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Mediator\CountryAwareViewableVoter
  */
-class CountryAwareViewableVoterTest extends \PHPUnit_Framework_TestCase
+class CountryAwareViewableVoterTest extends TestCase
 {
     /**
      * {@inheritdoc}

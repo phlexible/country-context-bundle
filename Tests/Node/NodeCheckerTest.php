@@ -15,17 +15,18 @@ use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\CountryContextBundle\Node\NodeChecker;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 
 /**
- * Node checker.
+ * Node checker test.
  *
  * @author Stephan Wentz <sw@brainbits.net>
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Node\NodeChecker
  */
-class NodeCheckerTest extends \PHPUnit_Framework_TestCase
+class NodeCheckerTest extends TestCase
 {
     /**
      * @var NodeChecker

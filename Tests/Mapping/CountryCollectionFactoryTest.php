@@ -16,6 +16,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollectionFactory;
 use Phlexible\Bundle\CountryContextBundle\Mapping\Language;
 use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Country collection factory test.
@@ -24,7 +25,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollectionFactory
  */
-class CountryCollectionFactoryTest extends \PHPUnit_Framework_TestCase
+class CountryCollectionFactoryTest extends TestCase
 {
     public function testCreateCollection()
     {

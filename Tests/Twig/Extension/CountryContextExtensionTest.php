@@ -18,6 +18,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
 use Phlexible\Bundle\CountryContextBundle\Twig\Extension\CountryContextExtension;
 use Phlexible\Bundle\TreeBundle\ContentTree\ContentTreeNode;
 use Phlexible\Bundle\TreeBundle\ContentTree\DelegatingContentTree;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -28,7 +29,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Twig\Extension\CountryContextExtension
  */
-class CountryContextExtensionTest extends \PHPUnit_Framework_TestCase
+class CountryContextExtensionTest extends TestCase
 {
     public function testCountries()
     {

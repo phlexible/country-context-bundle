@@ -15,6 +15,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Phlexible\Bundle\CountryContextBundle\Doctrine\CountryContextManager;
 use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Country context manager test.
@@ -23,7 +24,7 @@ use Phlexible\Bundle\CountryContextBundle\Entity\CountryContext;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Doctrine\CountryContextManager
  */
-class CountryContextManagerTest extends \PHPUnit_Framework_TestCase
+class CountryContextManagerTest extends TestCase
 {
     public function testFind()
     {

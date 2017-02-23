@@ -12,6 +12,7 @@
 namespace Phlexible\Bundle\CountryContextBundle\Tests\EventListener;
 
 use Phlexible\Bundle\CountryContextBundle\EventListener\CountryListener;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Kernel;
@@ -26,7 +27,7 @@ use Symfony\Component\Routing\RequestContextAwareInterface;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\EventListener\CountryListener
  */
-class CountryListenerTest extends \PHPUnit_Framework_TestCase
+class CountryListenerTest extends TestCase
 {
     public function testGetSubscribedEvents()
     {

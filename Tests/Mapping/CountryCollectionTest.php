@@ -15,6 +15,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\Country;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
 use Phlexible\Bundle\CountryContextBundle\Mapping\Language;
 use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Country collection test.
@@ -23,7 +24,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection
  */
-class CountryCollectionTest extends \PHPUnit_Framework_TestCase
+class CountryCollectionTest extends TestCase
 {
     public function testReturnsAllCountries()
     {

@@ -21,6 +21,7 @@ use Phlexible\Bundle\IndexerPageBundle\Event\MapDocumentEvent;
 use Phlexible\Bundle\IndexerPageBundle\Indexer\DocumentDescriptor;
 use Phlexible\Bundle\IndexerPageBundle\IndexerPageEvents;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -30,7 +31,7 @@ use Prophecy\Argument;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\EventListener\DocumentListener
  */
-class DocumentListenerTest extends \PHPUnit_Framework_TestCase
+class DocumentListenerTest extends TestCase
 {
     public function testGetSubscribedEvents()
     {

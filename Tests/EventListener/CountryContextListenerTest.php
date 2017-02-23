@@ -23,6 +23,7 @@ use Phlexible\Bundle\ElementRendererBundle\Configurator\Configuration;
 use Phlexible\Bundle\ElementRendererBundle\ElementRendererEvents;
 use Phlexible\Bundle\ElementRendererBundle\Event\ConfigureEvent;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -32,7 +33,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\EventListener\CountryContextListener
  */
-class CountryContextListenerTest extends \PHPUnit_Framework_TestCase
+class CountryContextListenerTest extends TestCase
 {
     public function testGetSubscribedEvents()
     {

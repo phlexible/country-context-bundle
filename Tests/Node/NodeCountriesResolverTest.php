@@ -19,6 +19,7 @@ use Phlexible\Bundle\CountryContextBundle\Mapping\LanguageCollection;
 use Phlexible\Bundle\CountryContextBundle\Model\CountryContextManagerInterface;
 use Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 
@@ -29,7 +30,7 @@ use Prophecy\Prophecy\ObjectProphecy;
  *
  * @covers \Phlexible\Bundle\CountryContextBundle\Node\NodeCountriesResolver
  */
-class NodeCountriesResolverTest extends \PHPUnit_Framework_TestCase
+class NodeCountriesResolverTest extends TestCase
 {
     /**
      * @var NodeCountriesResolver
