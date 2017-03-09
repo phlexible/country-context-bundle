@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Phlexible\Bundle\ElementBundle\Tests\Twig\Extension;
+namespace Phlexible\Bundle\CountryContextBundle\Tests\Twig\Extension;
 
 use Phlexible\Bundle\CountryContextBundle\Mapping\Country;
 use Phlexible\Bundle\CountryContextBundle\Mapping\CountryCollection;
