@@ -18,7 +18,7 @@ use Phlexible\Bundle\IndexerBundle\Event\DocumentEvent;
 use Phlexible\Bundle\IndexerBundle\IndexerEvents;
 use Phlexible\Bundle\IndexerPageBundle\Document\PageDocument;
 use Phlexible\Bundle\IndexerPageBundle\Event\MapDocumentEvent;
-use Phlexible\Bundle\IndexerPageBundle\Indexer\DocumentDescriptor;
+use Phlexible\Bundle\IndexerPageBundle\Indexer\PageDocumentDescriptor;
 use Phlexible\Bundle\IndexerPageBundle\IndexerPageEvents;
 use Phlexible\Bundle\TreeBundle\Entity\TreeNode;
 use PHPUnit\Framework\TestCase;
@@ -64,7 +64,7 @@ class DocumentListenerTest extends TestCase
 
         $node = new TreeNode();
 
-        $descriptor = $this->prophesize(DocumentDescriptor::class);
+        $descriptor = $this->prophesize(PageDocumentDescriptor::class);
         $descriptor->getNode()->willReturn($node);
         $descriptor->getLanguage()->willReturn('de');
 
